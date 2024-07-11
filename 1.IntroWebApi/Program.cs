@@ -33,10 +33,10 @@ internal class Program
         //DI helps us instancetiate an object depending on our requested abstraction
         //Singelton creates a SINGLE instance of a class for the life time of the application
         builder.Services.AddSingleton<IFoodStoreService, FoodStoreService>();
-        builder.Services.AddSingleton<IFoodExpiryService, FoodExpiryService>();
+        //builder.Services.AddSingleton<IFoodExpiryService, FoodExpiryService>();
 
         //Scoped creates a SINGLE instance of a class for each request
-        //builder.Services.AddScoped<IFoodStoreService, FoodStoreService>();
+        builder.Services.AddScoped<IFoodExpiryService, FoodExpiryService>();
 
         //------------------------------------------------------------------------------------------
 

@@ -24,6 +24,7 @@ namespace _1.IntroWebApi.Controllers
         [HttpGet("all")]
         public IEnumerable<Food> GetAllFood()
         {
+            _foodExpiryService.AddExpirationDateTime(5);
             return _foodStoreService.FoodList;
         }
 

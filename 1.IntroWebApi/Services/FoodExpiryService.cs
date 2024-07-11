@@ -14,7 +14,7 @@ namespace _1.IntroWebApi.Services
         public void AddExpirationDateTime(int foodId)
         {
             var foundFood = _foodStoreService.FoodList
-                .FirstOrDefault(f => f.Equals(foodId));
+                .FirstOrDefault(f => f.Id.Equals(foodId));
             foundFood.ExpirationDateTime = DateTime.Now.AddDays(50);
         }
     }
