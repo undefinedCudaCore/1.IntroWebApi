@@ -7,7 +7,10 @@
 //Internet->Http->IIS/NGINX/APACHE->Kestrel->AppCode
 //Kestrel does not support: Load balancing, SSL Cert decryption,  url rewrite, decompresion of requests etc.
 using _1.IntroWebApi.Data;
+using _1.IntroWebApi.Database;
 using _1.IntroWebApi.Services;
+using _1.IntroWebApi.Services.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
@@ -21,6 +24,12 @@ internal class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        //Registering DbContext
+        builder.Services.AddDbContext<FoodDbContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultCOnnection"));
+        });
 
         builder.Services.AddCors(p => p.AddPolicy("corsfordevelopment", builder =>
         {
@@ -37,6 +46,8 @@ internal class Program
 
         //Scoped creates a SINGLE instance of a class for each request
         builder.Services.AddScoped<IFoodExpiryService, FoodExpiryService>();
+
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
 
         //------------------------------------------------------------------------------------------
 
