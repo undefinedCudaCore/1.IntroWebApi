@@ -1,4 +1,4 @@
-﻿using _1.IntroWebApi.Models.Dto;
+﻿using _1.IntroWebApi.Models;
 
 namespace _1.IntroWebApi.Data
 {

@@ -48,6 +48,7 @@ internal class Program
         builder.Services.AddScoped<IFoodExpiryService, FoodExpiryService>();
 
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IFoodMapper, FoodMapper>();
 
         //------------------------------------------------------------------------------------------
 

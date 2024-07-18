@@ -1,4 +1,4 @@
-﻿namespace _1.IntroWebApi.Models.Dto
+﻿namespace _1.IntroWebApi.Models
 {
     public class Food
     {

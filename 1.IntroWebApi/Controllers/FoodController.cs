@@ -1,5 +1,5 @@
 ﻿using _1.IntroWebApi.Data;
-using _1.IntroWebApi.Models.Dto;
+using _1.IntroWebApi.Models;
 using _1.IntroWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,14 +11,16 @@ namespace _1.IntroWebApi.Controllers
     {
         private readonly IFoodStoreService _foodStoreService;
         private readonly IFoodExpiryService _foodExpiryService;
+        private readonly IFoodMapper _foodMapper;
 
         //Dependency Invertion IoC are design patterns
         //Dependency Invertion principle says that we should depend on abstractions (In this scenario we use interfaces)
         //Fort dependency injection we have to fulfill adding necesary parameters for WebApplication.Services to inject coresponding implementations
-        public FoodController(IFoodStoreService foodStoreService, IFoodExpiryService foodExpiryService)
+        public FoodController(IFoodStoreService foodStoreService, IFoodExpiryService foodExpiryService, IFoodMapper foodMapper)
         {
             _foodStoreService = foodStoreService;
             _foodExpiryService = foodExpiryService;
+            _foodMapper = foodMapper;
         }
 
         [HttpGet("all")]
@@ -27,7 +29,12 @@ namespace _1.IntroWebApi.Controllers
         public ActionResult<IEnumerable<Food>> GetAllFood()
         {
             _foodExpiryService.AddExpirationDateTime(5);
-            return Ok(_foodStoreService.FoodList);
+
+            var response = _foodStoreService.FoodList
+                .Select(_foodMapper.Bind)
+                .ToList();
+
+            return Ok(response);
         }
 
         [HttpGet("{id:int}", Name = "GetFood")]
