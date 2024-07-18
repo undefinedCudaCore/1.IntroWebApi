@@ -22,37 +22,53 @@ namespace _1.IntroWebApi.Controllers
         }
 
         [HttpGet("all")]
-        public IEnumerable<Food> GetAllFood()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Food>))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<IEnumerable<Food>> GetAllFood()
         {
             _foodExpiryService.AddExpirationDateTime(5);
-            return _foodStoreService.FoodList;
+            return Ok(_foodStoreService.FoodList);
         }
 
         [HttpGet("{id:int}", Name = "GetFood")]
-        public Food? GetFoodById(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Food))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<Food?> GetFoodById(int id)
         {
-            if (id == 0)
+            if (id <= 0)
             {
-                return null;
+                return BadRequest();
             }
 
             var foodProducts = _foodStoreService.FoodList
                 .FirstOrDefault(fp => fp.Id == id);
 
-            return foodProducts;
+            if (foodProducts == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(foodProducts);
         }
 
         [HttpPost]
-        public Food CreateFood(Food food)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Food))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public ActionResult<Food> CreateFood(Food food)
         {
             if (food == null)
             {
-                return null;
+                return BadRequest();
             }
 
             if (food.Id > 0)
             {
-                return null;
+                return BadRequest();
             }
 
             //int getLastFoodId = FoodStore.FoodList.Max(fp => fp.Id);
@@ -62,15 +78,22 @@ namespace _1.IntroWebApi.Controllers
 
             _foodStoreService.FoodList.Add(food);
 
-            return food;
+            return CreatedAtRoute("GetFood", new { id = food.Id }, food);
         }
 
         [HttpDelete("{id:int}", Name = "DeleteFood")]
-        public void DeleteFoodById(int id)
+        public IActionResult DeleteFoodById(int id)
         {
             var foodToDelete = _foodStoreService.FoodList.FirstOrDefault(fp => fp.Id == id);
 
             _foodStoreService.FoodList.Remove(foodToDelete);
+
+            if (foodToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
 
         [HttpPut("{id:int}", Name = "UpdateFood")]

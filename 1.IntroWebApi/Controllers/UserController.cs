@@ -9,16 +9,25 @@ namespace _1.IntroWebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository, ILogger<UserController> logger)
         {
             _userRepository = userRepository;
+            _logger = logger;
         }
 
         [HttpGet]
         public async Task<IEnumerable<User>> GetUsers()
         {
             var users = await _userRepository.GetUsersAsync();
+
+            if (users.Count < 5)
+            {
+                _logger.LogWarning("There are less than 5 users in teh database");
+                _logger.LogInformation("Returning {0} users ", users.Count);
+            }
+
             return users;
         }
 
@@ -27,7 +36,7 @@ namespace _1.IntroWebApi.Controllers
         {
             if (string.IsNullOrEmpty(request.UserName) || string.IsNullOrEmpty(request.Email))
             {
-                throw new ArgumentException("TEST");
+                _logger.LogError("Username or smth is missing");
             }
 
             request.Id = Guid.NewGuid();
