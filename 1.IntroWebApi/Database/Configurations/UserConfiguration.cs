@@ -29,6 +29,12 @@ namespace _1.IntroWebApi.Database.Configurations
             builder.Property(u => u.City)
                 .HasMaxLength(100);
 
+            builder.Property(u => u.FileName)
+                .HasMaxLength(255);
+
+            builder.Property(u => u.FileData)
+                .HasColumnType("varbinary(max)");
+
             // Index
             builder.HasIndex(u => u.UserName)
             .IsUnique();

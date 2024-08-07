@@ -12,8 +12,8 @@ using _1.IntroWebApi.Database;
 namespace _1.IntroWebApi.Migrations
 {
     [DbContext(typeof(FoodDbContext))]
-    [Migration("20240729182942_AddedAccountsTable")]
-    partial class AddedAccountsTable
+    [Migration("20240807152529_AddedAvatarForUser")]
+    partial class AddedAvatarForUser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,6 +42,13 @@ namespace _1.IntroWebApi.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<byte[]>("FileData")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -60,17 +67,17 @@ namespace _1.IntroWebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("52af4914-a8f7-4650-bc5b-837da60095ae"),
+                            Id = new Guid("e1c591d1-4856-42fe-bd7f-f6a54ed34315"),
                             City = "New York",
-                            CreationDateTime = new DateTime(2024, 7, 29, 18, 29, 41, 985, DateTimeKind.Utc).AddTicks(280),
+                            CreationDateTime = new DateTime(2024, 8, 7, 15, 25, 29, 650, DateTimeKind.Utc).AddTicks(3377),
                             Email = "johndoe@example.com",
                             UserName = "JohnDoe"
                         },
                         new
                         {
-                            Id = new Guid("4a828e82-e582-490c-b519-5c5848c7e9ce"),
+                            Id = new Guid("677440e5-43cd-4d8d-b459-dfc53ec0f728"),
                             City = "Los Angeles",
-                            CreationDateTime = new DateTime(2024, 7, 29, 18, 29, 41, 985, DateTimeKind.Utc).AddTicks(295),
+                            CreationDateTime = new DateTime(2024, 8, 7, 15, 25, 29, 650, DateTimeKind.Utc).AddTicks(3391),
                             Email = "johnnotdoe@notexample.notcom",
                             UserName = "JohnNotDoe"
                         });

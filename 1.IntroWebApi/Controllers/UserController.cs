@@ -1,5 +1,7 @@
 ﻿using _1.IntroWebApi.Models;
+using _1.IntroWebApi.Models.Dto;
 using _1.IntroWebApi.Services.Repositories;
+using _1.IntroWebApi.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _1.IntroWebApi.Controllers
@@ -32,16 +34,29 @@ namespace _1.IntroWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task CreateUser([FromBody] User request)
+        public async Task CreateUser([FromForm] CreateUserDto request)
         {
             if (string.IsNullOrEmpty(request.UserName) || string.IsNullOrEmpty(request.Email))
             {
                 _logger.LogError("Username or smth is missing");
             }
 
-            request.Id = Guid.NewGuid();
+            var user = new User
+            {
+                UserName = request.UserName,
+                Email = request.Email,
+                Id = Guid.NewGuid(),
+                FileName = request.Image?.FileName,
+                FileData = await FileUtils.ConvertToByteArray(request.Image),
+            };
 
-            await _userRepository.AddUserAsync(request);
+            await _userRepository.AddUserAsync(user);
+        }
+
+        [HttpGet("DownloadImage")]
+        public async Task<IActionResult> DownloadUserAvatar([FromQuery] Guid id)
+        {
+
         }
     }
 }

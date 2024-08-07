@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace _1.IntroWebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedAccountsTable : Migration
+    public partial class AddedAvatarForUser : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,6 +22,19 @@ namespace _1.IntroWebApi.Migrations
                 table: "users",
                 keyColumn: "Id",
                 keyValue: new Guid("d71ffcd9-1e83-424b-b328-2d22d690f584"));
+
+            migrationBuilder.AddColumn<byte[]>(
+                name: "FileData",
+                table: "users",
+                type: "varbinary(max)",
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "FileName",
+                table: "users",
+                type: "nvarchar(255)",
+                maxLength: 255,
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "Accounts",
@@ -39,11 +52,11 @@ namespace _1.IntroWebApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "users",
-                columns: new[] { "Id", "City", "CreationDateTime", "Email", "UserName" },
+                columns: new[] { "Id", "City", "CreationDateTime", "Email", "FileData", "FileName", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("4a828e82-e582-490c-b519-5c5848c7e9ce"), "Los Angeles", new DateTime(2024, 7, 29, 18, 29, 41, 985, DateTimeKind.Utc).AddTicks(295), "johnnotdoe@notexample.notcom", "JohnNotDoe" },
-                    { new Guid("52af4914-a8f7-4650-bc5b-837da60095ae"), "New York", new DateTime(2024, 7, 29, 18, 29, 41, 985, DateTimeKind.Utc).AddTicks(280), "johndoe@example.com", "JohnDoe" }
+                    { new Guid("677440e5-43cd-4d8d-b459-dfc53ec0f728"), "Los Angeles", new DateTime(2024, 8, 7, 15, 25, 29, 650, DateTimeKind.Utc).AddTicks(3391), "johnnotdoe@notexample.notcom", null, null, "JohnNotDoe" },
+                    { new Guid("e1c591d1-4856-42fe-bd7f-f6a54ed34315"), "New York", new DateTime(2024, 8, 7, 15, 25, 29, 650, DateTimeKind.Utc).AddTicks(3377), "johndoe@example.com", null, null, "JohnDoe" }
                 });
         }
 
@@ -56,12 +69,20 @@ namespace _1.IntroWebApi.Migrations
             migrationBuilder.DeleteData(
                 table: "users",
                 keyColumn: "Id",
-                keyValue: new Guid("4a828e82-e582-490c-b519-5c5848c7e9ce"));
+                keyValue: new Guid("677440e5-43cd-4d8d-b459-dfc53ec0f728"));
 
             migrationBuilder.DeleteData(
                 table: "users",
                 keyColumn: "Id",
-                keyValue: new Guid("52af4914-a8f7-4650-bc5b-837da60095ae"));
+                keyValue: new Guid("e1c591d1-4856-42fe-bd7f-f6a54ed34315"));
+
+            migrationBuilder.DropColumn(
+                name: "FileData",
+                table: "users");
+
+            migrationBuilder.DropColumn(
+                name: "FileName",
+                table: "users");
 
             migrationBuilder.InsertData(
                 table: "users",
