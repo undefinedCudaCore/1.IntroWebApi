@@ -1,4 +1,5 @@
-﻿using _1.IntroWebApi.Database.Configurations;
+﻿using _1._IntroWebApi.Models;
+using _1.IntroWebApi.Database.Configurations;
 using _1.IntroWebApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace _1.IntroWebApi.Database
         public FoodDbContext(DbContextOptions<FoodDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
