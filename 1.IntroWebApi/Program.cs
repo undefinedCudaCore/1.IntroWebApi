@@ -4,6 +4,8 @@ using _1.IntroWebApi.Data;
 using _1.IntroWebApi.Database;
 using _1.IntroWebApi.Services;
 using _1.IntroWebApi.Services.Repositories;
+using IntroWebApi.Infrastructure.Extencions;
+using IntroWepApi.Domain.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace _1._IntroWebApi
@@ -86,6 +88,7 @@ namespace _1._IntroWebApi
             //});
 
             // Registering DbContext
+
             builder.Services.AddDbContext<FoodDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -114,6 +117,9 @@ namespace _1._IntroWebApi
             builder.Services.AddScoped<IAccountService, AccountService>();
 
             builder.Services.AddScoped<IFoodMapper, FoodMapper>();
+
+            builder.Services.AddBusinessServices();
+            builder.Services.AddDatabaseServices();
 
             var app = builder.Build();
 

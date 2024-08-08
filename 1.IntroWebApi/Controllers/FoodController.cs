@@ -2,6 +2,7 @@
 using _1.IntroWebApi.Data;
 using _1.IntroWebApi.Models;
 using _1.IntroWebApi.Services;
+using IntroWepApi.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _1._IntroWebApi.Controllers
@@ -15,6 +16,7 @@ namespace _1._IntroWebApi.Controllers
         private readonly IFoodStoreService _foodStoreService;
         private readonly IFoodExpiryService _foodExpiryService;
         private readonly IFoodMapper _foodMapper;
+        private readonly IBusinessLogicService _businessLogicService;
 
         // Dependency Inversion/IoC are design patterns
 
@@ -26,11 +28,12 @@ namespace _1._IntroWebApi.Controllers
         // 3. Assign readonly field with provided argument
         // 4. Register your service in Program.cs builder.Services
         // 5. Test
-        public FoodController(IFoodStoreService foodStoreService, IFoodExpiryService foodExpiryService, IFoodMapper foodMapper)
+        public FoodController(IFoodStoreService foodStoreService, IFoodExpiryService foodExpiryService, IFoodMapper foodMapper, IBusinessLogicService businessLogicService)
         {
             _foodStoreService = foodStoreService;
             _foodExpiryService = foodExpiryService;
             _foodMapper = foodMapper;
+            _businessLogicService = businessLogicService;
         }
 
         [ApiKeyAuth]
@@ -41,7 +44,7 @@ namespace _1._IntroWebApi.Controllers
         public ActionResult<IEnumerable<Food>> GetAllFood()
         {
             _foodExpiryService.AddExpirationDateTime(5);
-
+            _businessLogicService.LogBusinessDeliver();
 
             var response = _foodStoreService.FoodList
                 .Select(_foodMapper.Bind)

@@ -15,11 +15,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InroWepApi.domain\IntroWepApi.Domain.csproj" />
+    <ProjectReference Include="..\IntrroWebApi.infrastructure\IntroWebApi.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
