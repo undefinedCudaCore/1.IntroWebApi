@@ -11,11 +11,13 @@ namespace _1.IntroWebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly IWebHostEnvironment _environment;
         private readonly ILogger<UserController> _logger;
 
-        public UserController(IUserRepository userRepository, ILogger<UserController> logger)
+        public UserController(IUserRepository userRepository, IWebHostEnvironment environment, ILogger<UserController> logger)
         {
             _userRepository = userRepository;
+            _environment = environment;
             _logger = logger;
         }
 
@@ -40,6 +42,18 @@ namespace _1.IntroWebApi.Controllers
             {
                 _logger.LogError("Username or smth is missing");
             }
+            var uploadFolderPath = Path.Combine(_environment.WebRootPath, "uploads");
+
+            if (!Directory.Exists(uploadFolderPath))
+            {
+                Directory.CreateDirectory(uploadFolderPath);
+            }
+
+            var filePath = Path.Combine(uploadFolderPath, request.Image.FileName);
+
+            using var stream = new FileStream(filePath, FileMode.Create);
+
+            await request.Image.CopyToAsync(stream);
 
             var user = new User
             {
@@ -56,7 +70,14 @@ namespace _1.IntroWebApi.Controllers
         [HttpGet("DownloadImage")]
         public async Task<IActionResult> DownloadUserAvatar([FromQuery] Guid id)
         {
+            var user = await _userRepository.GetUserByIdAsync(id);
 
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return File(user.FileData, "image/jpeg", user.FileName);
         }
     }
 }

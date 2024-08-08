@@ -18,7 +18,7 @@ namespace _1.IntroWebApi.Services.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<User?> GetUserById(Guid id)
+        public async Task<User?> GetUserByIdAsync(Guid id)
         {
             return await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
@@ -33,6 +33,6 @@ namespace _1.IntroWebApi.Services.Repositories
     {
         public Task AddUserAsync(User user);
         public Task<IList<User>> GetUsersAsync();
-        public Task<User?> GetUserById(Guid id);
+        public Task<User?> GetUserByIdAsync(Guid id);
     }
 }
