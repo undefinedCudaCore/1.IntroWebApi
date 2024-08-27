@@ -1,8 +1,8 @@
-﻿using _1.IntroWebApi.Models;
+﻿using IntroWepApi.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace _1.IntroWebApi.Database.Configurations
+namespace IntroWebApi.Infrastructure.Database.Configurations
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {

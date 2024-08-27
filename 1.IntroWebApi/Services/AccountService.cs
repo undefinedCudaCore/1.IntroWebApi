@@ -1,5 +1,5 @@
-﻿using _1._IntroWebApi.Models;
-using _1._IntroWebApi.Services.Repositories;
+﻿using IntroWebApi.Infrastructure.Services.Repositories;
+using IntroWepApi.Domain.Models;
 using System.Security.Cryptography;
 using System.Text;
 

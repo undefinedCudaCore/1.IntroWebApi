@@ -2,18 +2,16 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using _1.IntroWebApi.Database;
+using IntroWebApi.Infrastructure.Database;
 
 #nullable disable
 
-namespace _1.IntroWebApi.Migrations
+namespace IntroWebApi.Infrastructure.Migrations
 {
     [DbContext(typeof(FoodDbContext))]
-    [Migration("20240716162839_AddedInitialUsers")]
-    partial class AddedInitialUsers
+    [Migration("20240716161943_ChangedModelPropertyName")]
+    partial class ChangedModelPropertyName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +32,7 @@ namespace _1.IntroWebApi.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("CreationDateTime")
+                    b.Property<DateTime>("CreatonDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -56,24 +54,6 @@ namespace _1.IntroWebApi.Migrations
                         .IsUnique();
 
                     b.ToTable("users", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("d71ffcd9-1e83-424b-b328-2d22d690f584"),
-                            City = "New York",
-                            CreationDateTime = new DateTime(2024, 7, 16, 16, 28, 39, 401, DateTimeKind.Utc).AddTicks(5913),
-                            Email = "johndoe@example.com",
-                            UserName = "JohnDoe"
-                        },
-                        new
-                        {
-                            Id = new Guid("7d29a601-31d2-42de-a5ec-c56b025f0c81"),
-                            City = "Los Angeles",
-                            CreationDateTime = new DateTime(2024, 7, 16, 16, 28, 39, 401, DateTimeKind.Utc).AddTicks(5921),
-                            Email = "johnnotdoe@notexample.notcom",
-                            UserName = "JohnNotDoe"
-                        });
                 });
 #pragma warning restore 612, 618
         }

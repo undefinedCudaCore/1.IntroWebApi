@@ -1,4 +1,4 @@
-﻿using _1.IntroWebApi.Models;
+﻿using IntroWepApi.Domain.Models;
 
 namespace _1.IntroWebApi.Data
 {

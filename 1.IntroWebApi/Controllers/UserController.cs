@@ -1,7 +1,7 @@
-﻿using _1.IntroWebApi.Models;
-using _1.IntroWebApi.Models.Dto;
-using _1.IntroWebApi.Services.Repositories;
+﻿using _1.IntroWebApi.Dto;
 using _1.IntroWebApi.Utilities;
+using IntroWebApi.Infrastructure.Services.Repositories;
+using IntroWepApi.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _1.IntroWebApi.Controllers

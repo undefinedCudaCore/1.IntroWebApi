@@ -1,5 +1,5 @@
-﻿using _1.IntroWebApi.Models;
-using _1.IntroWebApi.Models.Dto;
+﻿using _1.IntroWebApi.Dto;
+using IntroWepApi.Domain.Models;
 
 namespace _1.IntroWebApi.Services
 {

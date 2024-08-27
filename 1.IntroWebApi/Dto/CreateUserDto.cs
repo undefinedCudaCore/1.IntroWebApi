@@ -1,6 +1,6 @@
 ﻿using _1.IntroWebApi.Atributes;
 
-namespace _1.IntroWebApi.Models.Dto
+namespace _1.IntroWebApi.Dto
 {
     public class CreateUserDto
     {

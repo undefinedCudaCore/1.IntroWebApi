@@ -1,7 +1,8 @@
 using _1._IntroWebApi.Controllers;
 using _1.IntroWebApi.Data;
-using _1.IntroWebApi.Models;
 using _1.IntroWebApi.Services;
+using IntroWepApi.Domain.Models;
+using IntroWepApi.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
@@ -16,9 +17,10 @@ namespace IntroWebApi.Test
             var foodStoreServiceMock = new Mock<IFoodStoreService>();
             var foodExpiryServiceMock = new Mock<IFoodExpiryService>();
             var foodMapperMock = new Mock<IFoodMapper>();
+            var businessLogicMock = new Mock<IBusinessLogicService>();
 
             //sut - Subject Under Test
-            var sut = new FoodController(foodStoreServiceMock.Object, foodExpiryServiceMock.Object, foodMapperMock.Object);
+            var sut = new FoodController(foodStoreServiceMock.Object, foodExpiryServiceMock.Object, foodMapperMock.Object, businessLogicMock.Object);
 
 
             List<Food> list = new List<Food>();
@@ -43,9 +45,10 @@ namespace IntroWebApi.Test
             var foodStoreServiceMock = new Mock<IFoodStoreService>();
             var foodExpiryServiceMock = new Mock<IFoodExpiryService>();
             var foodMapperMock = new Mock<IFoodMapper>();
+            var businessLogicMock = new Mock<IBusinessLogicService>();
 
             //sut - Subject Under Test
-            var sut = new FoodController(foodStoreServiceMock.Object, foodExpiryServiceMock.Object, foodMapperMock.Object);
+            var sut = new FoodController(foodStoreServiceMock.Object, foodExpiryServiceMock.Object, foodMapperMock.Object, businessLogicMock.Object);
 
             //setup mock
             foodStoreServiceMock.Setup(x => x.FoodList).Returns(new List<Food>());
@@ -64,9 +67,11 @@ namespace IntroWebApi.Test
             var foodStoreServiceMock = new Mock<IFoodStoreService>();
             var foodExpiryServiceMock = new Mock<IFoodExpiryService>();
             var foodMapperMock = new Mock<IFoodMapper>();
+            var businessLogicServiceMock = new Mock<IBusinessLogicService>();
+
 
             //sut - Subject Under Test
-            var sut = new FoodController(foodStoreServiceMock.Object, foodExpiryServiceMock.Object, foodMapperMock.Object);
+            var sut = new FoodController(foodStoreServiceMock.Object, foodExpiryServiceMock.Object, foodMapperMock.Object, businessLogicServiceMock.Object);
 
             //setup mock
             foodExpiryServiceMock.Setup(x => x.AddExpirationDateTime(It.IsAny<int>())).Verifiable();

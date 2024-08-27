@@ -2,18 +2,16 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using _1.IntroWebApi.Database;
+using IntroWebApi.Infrastructure.Database;
 
 #nullable disable
 
-namespace _1.IntroWebApi.Migrations
+namespace IntroWebApi.Infrastructure.Migrations
 {
     [DbContext(typeof(FoodDbContext))]
-    [Migration("20240716161943_ChangedModelPropertyName")]
-    partial class ChangedModelPropertyName
+    [Migration("20240716162034_ChangedModelPropertyName2")]
+    partial class ChangedModelPropertyName2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +32,7 @@ namespace _1.IntroWebApi.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("CreatonDateTime")
+                    b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")

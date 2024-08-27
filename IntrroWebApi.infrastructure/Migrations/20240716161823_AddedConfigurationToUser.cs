@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace _1.IntroWebApi.Migrations
+namespace IntroWebApi.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class AddedConfigurationToUser : Migration

@@ -1,5 +1,5 @@
-﻿using _1.IntroWebApi.Models;
-using AutoFixture.Kernel;
+﻿using AutoFixture.Kernel;
+using IntroWepApi.Domain.Models;
 
 namespace IntroWebApi.Test
 {

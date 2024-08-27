@@ -1,10 +1,9 @@
 using _1._IntroWebApi.Services;
-using _1._IntroWebApi.Services.Repositories;
 using _1.IntroWebApi.Data;
-using _1.IntroWebApi.Database;
 using _1.IntroWebApi.Services;
-using _1.IntroWebApi.Services.Repositories;
+using IntroWebApi.Infrastructure.Database;
 using IntroWebApi.Infrastructure.Extencions;
+using IntroWebApi.Infrastructure.Services.Repositories;
 using IntroWepApi.Domain.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -87,6 +86,8 @@ namespace _1._IntroWebApi
             //    };
             //});
 
+
+
             // Registering DbContext
 
             builder.Services.AddDbContext<FoodDbContext>(options =>
@@ -100,6 +101,14 @@ namespace _1._IntroWebApi
                 builder.WithOrigins("*")
                 .AllowAnyMethod()
                 .AllowAnyHeader();
+            }));
+
+            builder.Services.AddCors(p => p.AddPolicy("ProductionCorsPolicy", builder =>
+            {
+                builder.WithOrigins("https://wwww.google.com", "http://logalhost:4050")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
             }));
 
             // Registering services for Dependency Injection
@@ -128,14 +137,15 @@ namespace _1._IntroWebApi
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors("corsfordevelopment");
             }
-
-            app.UseCors("corsfordevelopment");
+            else
+            {
+                app.UseCors("ProductionCorsPolicy");
+            }
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-
 
             app.MapControllers();
             // app.MapGet("/first", () => "Hello World!");

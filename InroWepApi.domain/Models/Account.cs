@@ -1,4 +1,4 @@
-﻿namespace _1._IntroWebApi.Models
+﻿namespace IntroWepApi.Domain.Models
 {
     public class Account
     {

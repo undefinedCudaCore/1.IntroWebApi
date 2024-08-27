@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\1.IntroWebApi\1.IntroWebApi.csproj" />
+    <ProjectReference Include="..\InroWepApi.domain\IntroWepApi.Domain.csproj" />
+    <ProjectReference Include="..\IntrroWebApi.infrastructure\IntroWebApi.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

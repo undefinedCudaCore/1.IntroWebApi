@@ -2,27 +2,27 @@
 
 #nullable disable
 
-namespace _1.IntroWebApi.Migrations
+namespace IntroWebApi.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class ChangedModelPropertyName2 : Migration
+    public partial class ChangedModelPropertyName : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "CreatonDateTime",
+                name: "CreatonDAteTime",
                 table: "users",
-                newName: "CreationDateTime");
+                newName: "CreatonDateTime");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "CreationDateTime",
+                name: "CreatonDateTime",
                 table: "users",
-                newName: "CreatonDateTime");
+                newName: "CreatonDAteTime");
         }
     }
 }

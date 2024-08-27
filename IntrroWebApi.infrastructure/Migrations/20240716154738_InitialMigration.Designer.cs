@@ -2,14 +2,12 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using _1.IntroWebApi.Database;
+using IntroWebApi.Infrastructure.Database;
 
 #nullable disable
 
-namespace _1.IntroWebApi.Migrations
+namespace IntroWebApi.Infrastructure.Migrations
 {
     [DbContext(typeof(FoodDbContext))]
     [Migration("20240716154738_InitialMigration")]

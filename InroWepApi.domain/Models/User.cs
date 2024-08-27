@@ -1,4 +1,4 @@
-﻿namespace _1.IntroWebApi.Models
+﻿namespace IntroWepApi.Domain.Models
 {
     public class User
     {
@@ -11,3 +11,5 @@
         public DateTime CreationDateTime { get; set; } = DateTime.UtcNow;
     }
 }
+
+

@@ -1,8 +1,8 @@
-﻿using _1.IntroWebApi.Database;
-using _1.IntroWebApi.Models;
+﻿using IntroWebApi.Infrastructure.Database;
+using IntroWepApi.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace _1.IntroWebApi.Services.Repositories
+namespace IntroWebApi.Infrastructure.Services.Repositories
 {
     public class UserRepository : IUserRepository
     {

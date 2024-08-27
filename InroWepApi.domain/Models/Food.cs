@@ -1,4 +1,4 @@
-﻿namespace _1.IntroWebApi.Models
+﻿namespace IntroWepApi.Domain.Models
 {
     public class Food
     {
@@ -20,3 +20,5 @@
         public DateTime ExpirationDateTime { get; set; }
     }
 }
+
+

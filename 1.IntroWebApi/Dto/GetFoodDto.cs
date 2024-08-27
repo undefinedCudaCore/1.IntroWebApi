@@ -1,4 +1,6 @@
-﻿namespace _1.IntroWebApi.Models.Dto
+﻿using IntroWepApi.Domain.Models;
+
+namespace _1.IntroWebApi.Dto
 {
     public class GetFoodDto(Food food)
     {

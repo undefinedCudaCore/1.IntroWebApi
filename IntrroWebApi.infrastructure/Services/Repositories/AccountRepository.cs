@@ -1,7 +1,7 @@
-﻿using _1._IntroWebApi.Models;
-using _1.IntroWebApi.Database;
+﻿using IntroWebApi.Infrastructure.Database;
+using IntroWepApi.Domain.Models;
 
-namespace _1._IntroWebApi.Services.Repositories
+namespace IntroWebApi.Infrastructure.Services.Repositories
 {
     public interface IAccountRepository
     {

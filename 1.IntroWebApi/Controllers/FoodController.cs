@@ -1,7 +1,7 @@
 ﻿using _1.IntroWebApi.ActionFilters;
 using _1.IntroWebApi.Data;
-using _1.IntroWebApi.Models;
 using _1.IntroWebApi.Services;
+using IntroWepApi.Domain.Models;
 using IntroWepApi.Domain.Services;
 using Microsoft.AspNetCore.Mvc;
 
